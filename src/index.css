@@ -1,0 +1,119 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ── Base reset ──────────────────────────────────────────────────────────────── */
+@layer base {
+  *, *::before, *::after {
+    box-sizing: border-box;
+  }
+
+  html, body, #root {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+  }
+
+  body {
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    background-color: #262522;
+    color: #ffffff;
+  }
+
+  /* Scrollbar */
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #3D3A37;
+    border-radius: 3px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #92918C;
+  }
+
+  /* Selection */
+  ::selection {
+    background-color: rgba(129, 182, 76, 0.3);
+  }
+}
+
+/* ── Light theme overrides ──────────────────────────────────────────────────── */
+:root:not(.dark) {
+  --bg-primary: #F5F5F2;
+  --bg-panel: #FFFFFF;
+  --bg-panel-light: #F0EFEb;
+  --text-primary: #292824;
+  --text-secondary: #6B6965;
+  --border: #E0DED9;
+}
+
+:root:not(.dark) body {
+  background-color: #F5F5F2;
+  color: #292824;
+}
+
+:root:not(.dark) .bg-ca-bg-dark {
+  background-color: #F5F5F2 !important;
+}
+
+:root:not(.dark) .bg-ca-panel {
+  background-color: #FFFFFF !important;
+}
+
+:root:not(.dark) .bg-ca-panel-light {
+  background-color: #F0EFEB !important;
+}
+
+:root:not(.dark) .text-ca-text-primary {
+  color: #292824 !important;
+}
+
+:root:not(.dark) .text-ca-text-secondary {
+  color: #6B6965 !important;
+}
+
+:root:not(.dark) .border-ca-border {
+  border-color: #E0DED9 !important;
+}
+
+/* ── Chessboard container ───────────────────────────────────────────────────── */
+.board-wrapper {
+  position: relative;
+  width: 100%;
+  max-width: min(65vh, 600px);
+  margin: 0 auto;
+}
+
+/* ── Piece animation ────────────────────────────────────────────────────────── */
+.piece-transition {
+  transition: transform 0.15s ease-out;
+}
+
+/* ── Timer urgency ──────────────────────────────────────────────────────────── */
+@keyframes timerPulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.7; }
+}
+
+.timer-urgent {
+  animation: timerPulse 1s ease-in-out infinite;
+}
+
+/* ── Custom react-chessboard fixes ─────────────────────────────────────────── */
+[data-square] {
+  cursor: pointer;
+}
+
+/* Ensure chessboard fills its container */
+.chess-board-container > div {
+  width: 100% !important;
+}
